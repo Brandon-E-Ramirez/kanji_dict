@@ -1,13 +1,15 @@
-function Card(){
+import * as utils from './utils.js'
+import * as kanji from './kanji-data.js'
 
-    function getGradeKanji(grade){
+function Card(){
+  function getGradeKanji(grade){
         const link = `https://kanjiapi.dev/v1/kanji/grade-${grade}`;
         fetch(link)
         .then(response => {
             return response.json();
         }).then(data => {
             console.log(data);//displays when button is pressed 
-            displayData(data);
+            displayGradeData(data);
         }).catch(err => console.log(err)); //prints error message
     } 
 
@@ -35,15 +37,15 @@ switch(n) {
       case 8:
     getGradeKanji(8);
     break;
-
   default:
     console.log("There was an error: 'gradeBtnPressed'");
     } 
 }
 
     //displays the data for any grade/category
-    function displayData(data){
+    function displayGradeData(data){
         const div = document.createElement('div');
+        div.className="grade-div";
         data.forEach(element => {
             const btn = document.createElement("button");
             btn.className="character-card";
@@ -51,8 +53,10 @@ switch(n) {
 
 // Add a click event listener to each dynamically created button
         btn.addEventListener("click", function () {
-            alert("Button clicked for: " + element);
-            // Add your logic here for handling the button click event            
+            //alert("Button clicked for: " + element);
+            
+            kanji.kanjiData(element);
+
 
 
         });
@@ -76,7 +80,11 @@ switch(n) {
 <input type="submit" onClick={() => gradeBtnPressed(5)} value="Get Grade 5 Kanji"/>
 <input type="submit" onClick={() => gradeBtnPressed(6)} value="Get Grade 6 Kanji"/>
 <input type="submit" onClick={() => gradeBtnPressed(8)} value="Get Grade 8 Kanji"/>
+<input type="submit" onClick={() => utils.clearPage()} value="Clear Page"/>
 </div>
+
+
+
 </>
         );
     
