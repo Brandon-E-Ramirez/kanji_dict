@@ -1,0 +1,30 @@
+.input-container{
+  text-align: center;
+  
+}
+
+.introduction{
+  text-align: center;
+}
+
+.btn-list{
+  margin: auto;
+  margin-top: 5px;
+  width: 50%;
+  padding: 10px;
+}
+
+.character-card{
+  display:inline-block;
+  border: solid;
+  margin: 10px;
+  padding: 5px;
+  color: white;
+  background-color: black;
+  font-size: 2em;
+
+}
+
+.character-card:hover {
+color: red;
+}
