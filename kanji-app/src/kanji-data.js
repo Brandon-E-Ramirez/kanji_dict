@@ -47,10 +47,14 @@ createTable(kanji_data);
         var row = table.insertRow();
         for (let key in data[i]) {
           var cell = row.insertCell();
-
+        
         if(data[i][key] == ""){
             cell.textContent = "〇";
-        }else{
+        }else if(key == "Kanji"){
+            cell.textContent = data[i][key];
+            cell.className ="kanji-character-text";
+        }
+        else{
             cell.textContent = data[i][key];
         }
 
