@@ -7,20 +7,37 @@ export function kanjiData(kanji){
             return response.json();
         }).then(data => {
             console.log(data);//displays when button is pressed 
+
+            kanjiWordData(kanji);
+            
             displayKanjiData(data);
             return data;
         }).catch(err => console.log(err)); //prints error message
     } 
     
-function displayKanjiData(d){
-console.log(`Kanji: ${d.kanji}`);
-console.log(`Meaning:  ${d.meanings}`);
-console.log(`Kun: ${d.kun_readings}`);
-console.log(`On: ${d.on_readings}`);
-console.log(`Name Readings: ${d.name_readings}`);
 
+
+
+function kanjiWordData(kanji){
+    console.log('kanji words with: ' + kanji + "logged from k-d.js!");
+        const link = `https://kanjiapi.dev/v1/words/${kanji}`;
+        fetch(link)
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            console.log(data);//displays when button is pressed 
+            //displayKanjiWords(data);
+            return data;
+        }).catch(err => console.log(err)); //prints error message
+    } 
+
+
+
+
+
+function displayKanjiData(d){
         let kanji_data = [
-      { Kanji: d.kanji, Meanings: d.meanings, Kun: d.kun_readings, On: d.on_readings, Name_Readings: d.name_readings},
+      { Kanji: d.kanji, Meanings: d.meanings, Kun: d.kun_readings, On: d.on_readings, Stroke_Count: d.stroke_count, JLPT: d.jlpt, Grade: d.grade, Heisig_Reading: d.heisig_en},
     ];
 
 
